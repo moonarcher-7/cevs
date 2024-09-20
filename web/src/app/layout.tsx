@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react"
+import TopBar from "@/deps/components/TopNav";
 
 
 
@@ -27,12 +28,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body data-theme="light"
-        className={`${geistSans.variable} ${geistMono.variable} h-[100dvh] antialiased`}
+      <body data-theme="corporate"
+        className={`${geistSans.variable} ${geistMono.variable} ] h-[90dvh] antialiased`}
       >
-        <SessionProvider>
-        {children}
-        </SessionProvider>
+        <TopBar></TopBar>
+        <div className="h-full flex-1">
+          {children}
+        </div>
+        
       </body>
     </html>
   );
