@@ -25,7 +25,7 @@ export default function TopBar() {
           {info?.role == 'voter' ? 
                     <ul className="flex space-x-8">
                     <li className="font-medium text-lg"><Link href={"/dashboard"}>Dashboard</Link></li>
-                    <li className="font-medium text-lg"><Link href={"/history"}>History</Link></li>
+                    <li className="font-medium text-lg"><Link href={"/history"}></Link></li>
                   </ul>:
                   <></>  
         }

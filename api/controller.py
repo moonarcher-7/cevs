@@ -10,21 +10,32 @@ def get_user_by_email(db: Session, email: str):
 
 def login(db: Session, cred: schemas.Creds):
     user = db.query(models.User).filter(models.User.username == cred.username).first()
-
-    if user.password_hash == pwd_context.hash(cred.password):
+    if user is  None:
+        return { "error": "invalid credentials"}
+    if user.password_hash == md5(cred.password.encode()).hexdigest():
         return user
-    return { "error": "invalid credentials"}
+    return { "error": "invalid credentials1"}        
+    
 
 def getUser(db: Session):
     return db.query(models.User).all()
 
+def delete_user(db: Session, id):
+    user = db.get(models.User, id)
+
+    if user: 
+        db.delete(user)
+        db.commit()
+        return {"status": "success"}
+    return {"error": user}
+
 def create_user(db: Session, user: schemas.UserCreate):
-    hashed_password = 
     db_user = models.User(
         username=user.username,
         email=user.email,
-        password_hash=hashed_password,
-        role=models.UserRole.voter
+        password_hash=md5(user.password.encode()).hexdigest(),
+        role=user.role,
+        mfa_secret=user.mfa
     )
     db.add(db_user)
     db.commit()

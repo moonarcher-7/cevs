@@ -87,8 +87,8 @@ export default function Dashboard() {
                         <option value="admin">Admin</option>
                         <option value="voter">Voter</option>
                         <option value="candidate">Candidate</option>
-                        <option value="admin">Admin</option>
                     </select>
+                    {role}
                     <input  onChange={e=>setUsername(e.target.value)} type="text" placeholder="Username" className="input input-bordered w-full max-w-xs" />
                     <input onChange={e=>setEmail(e.target.value)} type="text" placeholder="email" className="input input-bordered w-full max-w-xs" />
                     <input onChange={e=>setPassword(e.target.value)} type="password" placeholder="password" className="input input-bordered w-full max-w-xs" />

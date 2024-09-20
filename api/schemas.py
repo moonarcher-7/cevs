@@ -11,12 +11,13 @@ class UserRole(str, Enum):
 class Creds(BaseModel):
     username: str
     password: str
-    mfa: str 
     
 class UserCreate(BaseModel):
     username: str
     email: EmailStr
     password: str
+    mfa: str
+    role: UserRole
 
 class User(BaseModel):
     id: int
@@ -24,6 +25,8 @@ class User(BaseModel):
     email: str
     role: UserRole
     created_at: datetime
+    mfa_secret:str
+    
 
     class Config:
         orm_mode = True
